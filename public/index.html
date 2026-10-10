@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Light Love Healing</title>
+  <meta name="description" content="Light Love Healing — ריפוי, תוכן רוחני וסדנאות. Healing, spiritual content and workshops.">
+  <meta name="theme-color" content="#f7f1e8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='14' fill='%23d9a441'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23d9a441' stroke-width='3' opacity='.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500&family=Heebo:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --bg-2: #efe4f1;
+      --ink: #2f2a36;
+      --muted: #6d6474;
+      --gold: #b9832a;
+      --gold-soft: #e8c47a;
+      --card: rgba(255, 255, 255, .62);
+      --line: rgba(47, 42, 54, .12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #17141c;
+        --bg-2: #241d2e;
+        --ink: #f1ebf4;
+        --muted: #b3a9ba;
+        --gold: #e8c47a;
+        --gold-soft: #b9832a;
+        --card: rgba(255, 255, 255, .06);
+        --line: rgba(241, 235, 244, .14);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #17141c; --bg-2: #241d2e; --ink: #f1ebf4; --muted: #b3a9ba;
+      --gold: #e8c47a; --gold-soft: #b9832a; --card: rgba(255,255,255,.06); --line: rgba(241,235,244,.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(1200px 700px at 50% -10%, var(--bg-2), transparent 70%), var(--bg);
+      color: var(--ink);
+      font-family: "Heebo", system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    html[lang="en"] body { font-family: "Heebo", system-ui, sans-serif; }
+    .serif { font-family: "Frank Ruhl Libre", serif; }
+    html[lang="en"] .serif { font-family: "Cormorant Garamond", serif; }
+
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px clamp(16px, 5vw, 48px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 500; letter-spacing: .02em; }
+    .brand svg { width: 28px; height: 28px; }
+    .lang {
+      border: 1px solid var(--line); background: var(--card); color: var(--ink);
+      font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+    .lang:hover { border-color: var(--gold); }
+
+    main { flex: 1; width: 100%; max-width: 980px; margin: 0 auto; padding: 0 16px 64px; text-align: center; }
+
+    .sun { width: 150px; height: 150px; margin: 24px auto 28px; position: relative; }
+    .sun span { position: absolute; inset: 0; border-radius: 50%; }
+    .sun .core { inset: 42px; background: radial-gradient(circle, #fff6dd, var(--gold-soft) 60%, var(--gold)); box-shadow: 0 0 60px var(--gold-soft); }
+    .sun .ring { border: 1px solid var(--gold); opacity: .35; animation: breathe 6s ease-in-out infinite; }
+    .sun .ring.r2 { inset: 18px; animation-delay: -2s; }
+    .sun .ring.r3 { inset: 32px; animation-delay: -4s; }
+    @keyframes breathe { 0%, 100% { transform: scale(.94); opacity: .2; } 50% { transform: scale(1.04); opacity: .55; } }
+    @media (prefers-reduced-motion: reduce) { .sun .ring { animation: none; } }
+
+    .eyebrow { color: var(--gold); letter-spacing: .25em; font-size: 13px; font-weight: 500; text-transform: uppercase; }
+    h1 { font-size: clamp(36px, 7vw, 64px); font-weight: 400; line-height: 1.15; margin: 10px 0 18px; }
+    .lead { font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); max-width: 620px; margin: 0 auto; }
+
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 56px 0 48px; text-align: start; }
+    @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+      padding: 26px 24px; backdrop-filter: blur(8px);
+    }
+    .card svg { width: 30px; height: 30px; color: var(--gold); margin-bottom: 12px; }
+    .card h2 { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 15.5px; }
+
+    .soon {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 10px 22px; border-radius: 999px; font-weight: 400;
+    }
+    .soon::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 50% { opacity: .3; } }
+
+    .contact { max-width: 620px; margin: 56px auto 0; text-align: start; padding: 32px clamp(20px, 4vw, 36px); }
+    .contact h2 { font-size: 28px; font-weight: 400; text-align: center; line-height: 1.3; }
+    .contact .sub { color: var(--muted); text-align: center; margin: 4px 0 24px; }
+    form { display: grid; gap: 14px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+    label { display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+    input, select, textarea {
+      font: inherit; font-size: 16px; color: var(--ink); width: 100%;
+      background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px;
+    }
+    html[lang="he"] input[dir="ltr"] { text-align: right; }
+    select option { color: #2f2a36; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 20%, transparent); }
+    textarea { resize: vertical; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .send {
+      font: inherit; font-weight: 500; font-size: 16px; cursor: pointer; margin-top: 6px;
+      background: var(--gold); color: #fff; border: 0; border-radius: 999px; padding: 12px 28px; justify-self: center;
+    }
+    .send:disabled { opacity: .6; cursor: wait; }
+    .status { text-align: center; min-height: 1.7em; font-size: 15px; }
+    .status.ok { color: var(--gold); }
+    .status.err { color: #c0504d; }
+
+    footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 32px; }
+
+    [data-lang] { display: none; }
+    html[lang="he"] [data-lang="he"], html[lang="en"] [data-lang="en"] { display: revert; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="12" fill="#d9a441"/><circle cx="32" cy="32" r="22" fill="none" stroke="#d9a441" stroke-width="2.5" opacity=".5"/></svg>
+      <span>Light Love Healing</span>
+    </div>
+    <button class="lang" id="langBtn" type="button" aria-label="Switch language">English</button>
+  </header>
+
+  <main>
+    <div class="sun" aria-hidden="true"><span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span><span class="core"></span></div>
+
+    <p class="eyebrow">Light · Love · Healing</p>
+    <h1 class="serif">
+      <span data-lang="he">אור, אהבה וריפוי</span>
+      <span data-lang="en">Light, Love &amp; Healing</span>
+    </h1>
+    <p class="lead">
+      <span data-lang="he">מרחב לריפוי, להתפתחות רוחנית ולחיבור פנימי. האתר נמצא בבנייה ויעלה בקרוב.</span>
+      <span data-lang="en">A space for healing, spiritual growth and inner connection. The site is being built and will open soon.</span>
+    </p>
+
+    <section class="pillars">
+      <article class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg>
+        <h2 class="serif"><span data-lang="he">טיפולים</span><span data-lang="en">Healing Sessions</span></h2>
+        <p><span data-lang="he">מפגשי ריפוי אישיים לאיזון גוף, נפש ורוח.</span><span data-lang="en">Personal sessions to balance body, mind and spirit.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M9 8h6M9 12h4"/></svg>
+        <h2 class="serif"><span data-lang="he">תוכן והשראה</span><span data-lang="en">Content &amp; Inspiration</span></h2>
+        <p><span data-lang="he">מאמרים, מדיטציות וכלים לחיים מלאי אור.</span><span data-lang="en">Articles, meditations and tools for a life full of light.</span></p>
+      </article>
+      <article class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/><path d="M7 20a5 5 0 0 1 10 0M2 19a3 3 0 0 1 4-2.8M22 19a3 3 0 0 0-4-2.8"/></svg>
+        <h2 class="serif"><span data-lang="he">סדנאות וקורסים</span><span data-lang="en">Workshops &amp; Courses</span></h2>
+        <p><span data-lang="he">מפגשים קבוצתיים ומסלולי לימוד להעמקה.</span><span data-lang="en">Group gatherings and learning paths to go deeper.</span></p>
+      </article>
+    </section>
+
+    <span class="soon"><span data-lang="he">בקרוב</span><span data-lang="en">Coming soon</span></span>
+
+    <section class="contact card" id="contact">
+      <h2 class="serif">
+        <span data-lang="he">נשמח לשמוע ממך</span>
+        <span data-lang="en">We'd love to hear from you</span>
+      </h2>
+      <p class="sub">
+        <span data-lang="he">השאירו פרטים ונחזור אליכם, או הירשמו לעדכון כשהאתר עולה.</span>
+        <span data-lang="en">Leave your details and we'll get back to you, or get notified when the site opens.</span>
+      </p>
+
+      <form id="contactForm" novalidate>
+        <div class="row">
+          <label>
+            <span data-lang="he">שם *</span><span data-lang="en">Name *</span>
+            <input name="name" required maxlength="100" autocomplete="name">
+          </label>
+          <label>
+            <span data-lang="he">טלפון</span><span data-lang="en">Phone</span>
+            <input name="phone" type="tel" maxlength="40" autocomplete="tel" dir="ltr">
+          </label>
+        </div>
+        <label>
+          <span data-lang="he">אימייל</span><span data-lang="en">Email</span>
+          <input name="email" type="email" maxlength="200" autocomplete="email" dir="ltr">
+        </label>
+        <label>
+          <span data-lang="he">מה מעניין אותך?</span><span data-lang="en">What interests you?</span>
+          <select name="interest">
+            <option value="sessions" data-he="טיפולים" data-en="Healing sessions"></option>
+            <option value="content" data-he="תוכן והשראה" data-en="Content &amp; inspiration"></option>
+            <option value="workshops" data-he="סדנאות וקורסים" data-en="Workshops &amp; courses"></option>
+            <option value="other" data-he="אחר" data-en="Other"></option>
+          </select>
+        </label>
+        <label>
+          <span data-lang="he">הודעה</span><span data-lang="en">Message</span>
+          <textarea name="message" rows="4" maxlength="3000"></textarea>
+        </label>
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="send">
+          <span data-lang="he">שליחה</span><span data-lang="en">Send</span>
+        </button>
+        <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Light Love Healing</footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('langBtn');
+      var saved = null;
+      try { saved = localStorage.getItem('llh-lang'); } catch (e) {}
+      var initial = saved || ((navigator.language || 'he').toLowerCase().startsWith('he') ? 'he' : 'en');
+      function apply(lang) {
+        root.lang = lang;
+        root.dir = lang === 'he' ? 'rtl' : 'ltr';
+        btn.textContent = lang === 'he' ? 'English' : 'עברית';
+        document.querySelectorAll('option[data-he]').forEach(function (o) { o.textContent = o.dataset[lang]; });
+        try { localStorage.setItem('llh-lang', lang); } catch (e) {}
+      }
+      btn.addEventListener('click', function () { apply(root.lang === 'he' ? 'en' : 'he'); });
+      apply(initial);
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      var MSG = {
+        he: { ok: 'תודה! קיבלנו את הפרטים ונחזור אליך בהקדם.', name: 'נא למלא שם.', contact: 'נא להשאיר אימייל או טלפון.', email: 'כתובת האימייל לא תקינה.', fail: 'משהו השתבש. נסו שוב בעוד רגע.' },
+        en: { ok: "Thank you! We received your details and will be in touch soon.", name: 'Please enter your name.', contact: 'Please leave an email or phone number.', email: 'That email address looks invalid.', fail: 'Something went wrong. Please try again shortly.' }
+      };
+      var form = document.getElementById('contactForm');
+      var status = document.getElementById('formStatus');
+      function show(key, ok) {
+        status.textContent = MSG[root.lang][key] || MSG[root.lang].fail;
+        status.className = 'status ' + (ok ? 'ok' : 'err');
+      }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var d = Object.fromEntries(new FormData(form));
+        d.lang = root.lang;
+        if (!d.name.trim()) return show('name');
+        if (!d.email.trim() && !d.phone.trim()) return show('contact');
+        var send = form.querySelector('.send');
+        send.disabled = true;
+        status.textContent = '';
+        fetch('/api/contact', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) })
+          .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, b: b }; }); })
+          .then(function (res) {
+            if (res.ok) { form.reset(); show('ok', true); } else { show(res.b.error); }
+          })
+          .catch(function () { show('fail'); })
+          .finally(function () { send.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>
