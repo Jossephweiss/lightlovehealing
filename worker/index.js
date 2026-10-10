@@ -78,10 +78,59 @@ async function handleContact(request, env, ctx) {
   return json({ ok: true });
 }
 
+const CHAT_MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
+
+const SYSTEM_PROMPT = `You are the friendly assistant on the website of "Light Love Healing" (lightlovehealing.org).
+Light Love Healing is a space for healing, spiritual growth and inner connection. It offers three things:
+1. Healing sessions — personal sessions to balance body, mind and spirit.
+2. Content & inspiration — articles, meditations and tools for a life full of light.
+3. Workshops & courses — group gatherings and learning paths.
+The full website is still being built.
+
+Rules:
+- Reply in the same language the visitor writes in (Hebrew or English). Use natural, correct Hebrew.
+- Be warm, calm and concise: 1–4 short sentences.
+- Never invent details you were not given: no prices, dates, locations, names, durations or methods. If asked, say these details will be shared soon and invite the visitor to leave their details in the contact form on this page.
+- You do not give medical, psychological or legal advice and never suggest healing replaces medical care. In distress or emergency, direct the visitor to a professional or emergency services (in Israel: 101, ERAN 1201).
+- Stay on topics related to Light Love Healing. Politely decline unrelated requests.
+- When the visitor wants to book, ask a detailed question or be contacted, point them to the contact form below the chat.`;
+
+async function handleChat(request, env) {
+  if (request.method !== 'POST') return json({ error: 'method' }, 405);
+
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ error: 'invalid' }, 400);
+  }
+
+  const history = (Array.isArray(data.messages) ? data.messages : [])
+    .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+    .slice(-10)
+    .map((m) => ({ role: m.role, content: m.content.slice(0, 1000) }));
+  if (history.at(-1)?.role !== 'user') return json({ error: 'invalid' }, 400);
+
+  try {
+    const result = await env.AI.run(CHAT_MODEL, {
+      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...history],
+      max_tokens: 400,
+      temperature: 0.5,
+    });
+    const reply = (result.response || '').trim();
+    if (!reply) throw new Error('empty reply');
+    return json({ reply });
+  } catch (err) {
+    console.error('chat', err);
+    return json({ error: 'ai' }, 502);
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/api/contact') return handleContact(request, env, ctx);
+    if (url.pathname === '/api/chat') return handleChat(request, env);
     if (url.pathname.startsWith('/api/')) return json({ error: 'not found' }, 404);
     return env.ASSETS.fetch(request);
   },
