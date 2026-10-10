@@ -29,17 +29,6 @@ async function notifyEmail(env, c) {
   });
 }
 
-// Optional: set WHATSAPP_PHONE and WHATSAPP_APIKEY secrets (CallMeBot) to enable.
-async function notifyWhatsApp(env, c) {
-  if (!env.WHATSAPP_PHONE || !env.WHATSAPP_APIKEY) return;
-  const url = new URL('https://api.callmebot.com/whatsapp.php');
-  url.searchParams.set('phone', env.WHATSAPP_PHONE);
-  url.searchParams.set('apikey', env.WHATSAPP_APIKEY);
-  url.searchParams.set('text', `🌟 פנייה חדשה מהאתר\n${summary(c)}`);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`CallMeBot ${res.status}`);
-}
-
 // Optional: set the TELEGRAM_USER secret (CallMeBot, e.g. "@name") to enable.
 async function notifyTelegram(env, c) {
   if (!env.TELEGRAM_USER) return;
@@ -81,7 +70,7 @@ async function handleContact(request, env, ctx) {
     .run();
 
   const contact = { name, email, phone, interest, message };
-  for (const notify of [notifyEmail, notifyWhatsApp, notifyTelegram]) {
+  for (const notify of [notifyEmail, notifyTelegram]) {
     ctx.waitUntil(notify(env, contact).catch((err) => console.error(notify.name, err)));
   }
 
