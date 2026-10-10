@@ -40,6 +40,16 @@ async function notifyWhatsApp(env, c) {
   if (!res.ok) throw new Error(`CallMeBot ${res.status}`);
 }
 
+// Optional: set the TELEGRAM_USER secret (CallMeBot, e.g. "@name") to enable.
+async function notifyTelegram(env, c) {
+  if (!env.TELEGRAM_USER) return;
+  const url = new URL('https://api.callmebot.com/text.php');
+  url.searchParams.set('user', env.TELEGRAM_USER);
+  url.searchParams.set('text', `🌟 פנייה חדשה מהאתר\n${summary(c)}`);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`CallMeBot ${res.status}`);
+}
+
 async function handleContact(request, env, ctx) {
   if (request.method !== 'POST') return json({ error: 'method' }, 405);
 
@@ -71,7 +81,7 @@ async function handleContact(request, env, ctx) {
     .run();
 
   const contact = { name, email, phone, interest, message };
-  for (const notify of [notifyEmail, notifyWhatsApp]) {
+  for (const notify of [notifyEmail, notifyWhatsApp, notifyTelegram]) {
     ctx.waitUntil(notify(env, contact).catch((err) => console.error(notify.name, err)));
   }
 
