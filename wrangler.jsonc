@@ -22,5 +22,8 @@
       "migrations_dir": "migrations"
     }
   ],
+  "send_email": [
+    { "name": "NOTIFY", "destination_address": "jw.gandr@gmail.com" }
+  ],
   "observability": { "enabled": true }
 }
